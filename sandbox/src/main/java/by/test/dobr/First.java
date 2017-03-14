@@ -10,8 +10,9 @@ public class First {
     System.out.println("Hi, world!");
     Point first = new Point(5, 6);
     Point second = new Point(5, 10);
+    Point dist = new Point(1,1);
     System.out.println("Distance between p1(" + first.x + "," + first.y + ") and p2(" + second.x + "," + second.y + ") = " + distance(first, second));
-    System.out.println("Distance between p1(" + first.x + "," + first.y + ") and p2(" + second.x + "," + second.y + ") = " + distance(first, second));
+    System.out.println("Distance = " + dist.distance());
   }
 
 }
