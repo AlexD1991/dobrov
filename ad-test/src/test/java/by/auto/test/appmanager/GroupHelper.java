@@ -27,7 +27,7 @@ public class GroupHelper extends HelperBase{
     type (By.name("group_footer"), groupObject.getGroupFooter());
   }
 
-  public void clickNewGroup() {
+  public void goToNewGroup() {
     click (By.name("new"));
   }
 

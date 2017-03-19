@@ -1,8 +1,12 @@
 package by.auto.test.appmanager;
 
 import by.auto.test.model.ContactObject;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by AlexD on 3/19/2017.
@@ -52,5 +56,24 @@ public class ContactHelper extends HelperBase{
       click(By.xpath("//div[@id='content']/form/select[4]//option[6]"));
     }
     type(By.name("ayear"), contactObject.getContactMarryYear());
+  }
+
+  public void selectContact() {
+    click(By.name("selected[]"));
+  }
+
+  public void deleteContact() {
+    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+  }
+
+  public void confirmDeletion() {
+    try {
+      WebDriverWait wait = new WebDriverWait(wd, 2);
+      wait.until(ExpectedConditions.alertIsPresent());
+      Alert alert = wd.switchTo().alert();
+      alert.accept();
+    } catch (Exception e) {
+      //exception handling
+    }
   }
 }
