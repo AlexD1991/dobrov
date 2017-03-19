@@ -1,4 +1,4 @@
-package by.auto.test;
+package by.auto.test.model;
 
 public class GroupObject {
   private final String groupName;

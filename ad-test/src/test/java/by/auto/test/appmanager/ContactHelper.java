@@ -1,41 +1,28 @@
-package by.auto.test;
+package by.auto.test.appmanager;
 
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
-
+import by.auto.test.model.ContactObject;
+import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.*;
 
-public class ContactCreation {
-  FirefoxDriver wd;
+/**
+ * Created by AlexD on 3/19/2017.
+ */
+public class ContactHelper {
+  private FirefoxDriver wd;
 
-  @BeforeMethod
-  public void setUp() throws Exception {
-    wd = new FirefoxDriver();
-    wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-    login("admin", "secret");
+  public ContactHelper(FirefoxDriver wd) {
+    this.wd = wd;
   }
 
-  @Test
-  public void ContactCreation() {
-    clickNewContact();
-    fillContactFields(new ContactObject("11", "11", "11", "11", "11", "11", "1", "1", "", "1", "1", "2000", "1990"));
-    submitContactCreation();
-    returnToHomePage();
-  }
-
-  private void returnToHomePage() {
+  public void returnToHomePage() {
     wd.findElement(By.linkText("home page")).click();
   }
 
-  private void submitContactCreation() {
+  public void submitContactCreation() {
     wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
   }
 
-  private void fillContactFields(ContactObject contactObject) {
+  public void fillContactFields(ContactObject contactObject) {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
     wd.findElement(By.name("firstname")).sendKeys(contactObject.getContactFN());
@@ -89,34 +76,5 @@ public class ContactCreation {
     wd.findElement(By.name("ayear")).click();
     wd.findElement(By.name("ayear")).clear();
     wd.findElement(By.name("ayear")).sendKeys(contactObject.getContactMarryYear());
-  }
-
-  private void clickNewContact() {
-    wd.findElement(By.linkText("add new")).click();
-  }
-
-  private void login(String loginName, String loginPassword) {
-    wd.get("http://localhost/addressbook/");
-    wd.findElement(By.name("user")).click();
-    wd.findElement(By.name("user")).clear();
-    wd.findElement(By.name("user")).sendKeys(loginName);
-    wd.findElement(By.name("pass")).click();
-    wd.findElement(By.name("pass")).clear();
-    wd.findElement(By.name("pass")).sendKeys(loginPassword);
-    wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
-  }
-
-  @AfterMethod
-  public void tearDown() {
-    wd.quit();
-  }
-
-  public static boolean isAlertPresent(FirefoxDriver wd) {
-    try {
-      wd.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
   }
 }

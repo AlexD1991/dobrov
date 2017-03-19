@@ -1,4 +1,4 @@
-package by.auto.test;
+package by.auto.test.model;
 
 public class ContactObject {
   private final String contactFN;
