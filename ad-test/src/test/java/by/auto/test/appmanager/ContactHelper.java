@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class ContactHelper extends HelperBase{
 
-  public ContactHelper(FirefoxDriver wd) {
+  public ContactHelper(WebDriver wd) {
     super(wd);
   }
 
