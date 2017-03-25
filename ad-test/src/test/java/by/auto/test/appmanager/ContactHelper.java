@@ -12,7 +12,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Created by AlexD on 3/19/2017.
  */
 public class ContactHelper extends HelperBase{
-  private FirefoxDriver wd;
 
   public ContactHelper(FirefoxDriver wd) {
     super(wd);
@@ -67,14 +66,7 @@ public class ContactHelper extends HelperBase{
   }
 
   public void confirmDeletion() {
-    try {
-      WebDriverWait wait = new WebDriverWait(wd, 2);
-      wait.until(ExpectedConditions.alertIsPresent());
-      Alert alert = wd.switchTo().alert();
-      alert.accept();
-    } catch (Exception e) {
-      //exception handling
-    }
+    wd.switchTo().alert().accept();
   }
 
   public void initContactEdition() {
