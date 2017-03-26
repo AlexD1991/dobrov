@@ -36,4 +36,8 @@ public class NavigationHelper extends HelperBase{
     }
     click(By.linkText("home page"));
   }
+
+  public void goToHomePageHeaderLink() {
+    click(By.linkText("home"));
+  }
 }

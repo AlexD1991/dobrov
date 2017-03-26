@@ -1,6 +1,7 @@
 package by.auto.test.appmanager;
 
 import by.auto.test.model.GroupObject;
+import com.sun.javafx.image.BytePixelSetter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -47,5 +48,20 @@ public class GroupHelper extends HelperBase{
 
   public void initGroupModification() {
     click (By.name("edit"));
+  }
+
+  public void createGroup(GroupObject groupObject) {
+    goToNewGroup();
+    fillGroupFields(groupObject);
+    sumbitNewGroupCreation();
+    returnToGroupPage();
+  }
+
+  public boolean isThereGroup() {
+      return isElementPresent(By.name("selected[]"));
+    }
+
+  public boolean isThereGroupByGroupName(String groupName) {
+    return (wd.findElement(By.xpath("//div[@id='content']//span")).getText().equals(groupName));
   }
 }

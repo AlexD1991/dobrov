@@ -81,4 +81,14 @@ public class ContactHelper extends HelperBase{
   public void submitContactEdition() {
     click(By.name("update"));
   }
+
+  public void createContact(ContactObject contact, boolean creation) {
+    fillContactFields(contact, creation);
+    submitContactCreation();
+
+  }
+
+  public boolean isThereContact() {
+    return (isElementPresent(By.name("selected[]")) && isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")));
+  }
 }
