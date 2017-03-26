@@ -6,26 +6,25 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 /**
  * Created by AlexD on 3/19/2017.
  */
 public class ContactHelper extends HelperBase{
 
-  public ContactHelper(WebDriver wd) {
+  ContactHelper(WebDriver wd) {
     super(wd);
   }
 
-  public void returnToHomePage() {
-    click(By.linkText("home page"));
-  }
 
   public void submitContactCreation() {
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
-  public void fillContactFields(ContactObject contactObject) {
+  public void fillContactFields(ContactObject contactObject, boolean creation) {
     type(By.name("firstname"), contactObject.getContactFN());
     type(By.name("middlename"), contactObject.getContactMN());
     type(By.name("lastname"), contactObject.getContactLN());
@@ -55,6 +54,12 @@ public class ContactHelper extends HelperBase{
       click(By.xpath("//div[@id='content']/form/select[4]//option[6]"));
     }
     type(By.name("ayear"), contactObject.getContactMarryYear());
+
+    if (creation){
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactObject.getGroup());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
   }
 
   public void selectContact() {

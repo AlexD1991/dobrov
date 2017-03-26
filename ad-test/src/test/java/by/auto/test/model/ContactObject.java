@@ -14,8 +14,9 @@ public class ContactObject {
   private final String contactFax;
   private final String contactMarryYear;
   private final String contactBirthYear;
+  private String group;
 
-  public ContactObject(String contactFN, String contactMN, String contactLN, String contactNickName, String contactTitle, String contactCompany, String contactAddress, String contactHome, String contactMobile, String contactWork, String contactFax, String contactMarryYear, String contactBirthYear) {
+  public ContactObject(String contactFN, String contactMN, String contactLN, String contactNickName, String contactTitle, String contactCompany, String contactAddress, String contactHome, String contactMobile, String contactWork, String contactFax, String contactMarryYear, String contactBirthYear, String group) {
     this.contactFN = contactFN;
     this.contactMN = contactMN;
     this.contactLN = contactLN;
@@ -29,6 +30,7 @@ public class ContactObject {
     this.contactFax = contactFax;
     this.contactMarryYear = contactMarryYear;
     this.contactBirthYear = contactBirthYear;
+    this.group = group;
   }
 
   public String getContactFN() {
@@ -81,5 +83,9 @@ public class ContactObject {
 
   public String getContactBirthYear() {
     return contactBirthYear;
+  }
+
+  public String getGroup() {
+    return group;
   }
 }

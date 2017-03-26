@@ -9,15 +9,31 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  */
 public class NavigationHelper extends HelperBase{
 
-  public NavigationHelper(WebDriver wd){
+  NavigationHelper(WebDriver wd){
     super(wd);
   }
 
   public void clickNewContact() {
+    if (isElementPresent(By.name("submit")) && wd.findElement(By.name("submit")).getText().equals("Enter")){
+      return;
+    }
     click(By.linkText("add new"));
   }
 
   public void goToGroupPage() {
+    if (isElementPresent(By.tagName("h1"))
+            && isElementPresent(By.name("new"))
+            && wd.findElement(By.tagName("h1")).getText().equals("Groups")){
+      return;
+    }
     click(By.linkText("groups"));
+  }
+
+
+  public void returnToHomePage() {
+    if (isElementPresent(By.id("maintable"))){
+      return;
+    }
+    click(By.linkText("home page"));
   }
 }

@@ -2,6 +2,7 @@ package by.auto.test.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -9,25 +10,28 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  * Created by AlexD on 3/19/2017.
  */
 public class HelperBase {
-  protected WebDriver wd;
+  WebDriver wd;
 
-  public HelperBase(WebDriver wd) {
+  HelperBase(WebDriver wd) {
     this.wd=wd;
   }
 
-  protected void click(By locator) {
+  void click(By locator) {
     wd.findElement(locator).click();
   }
 
-  protected void type(By locator, String text) {
+  void type(By locator, String text) {
     click(locator);
     if (text!=null){
-      wd.findElement(locator).clear();
-      wd.findElement(locator).sendKeys(text);
+      String currentText = wd.findElement(locator).getAttribute("value");
+      if (!text.equals(currentText)) {
+        wd.findElement(locator).clear();
+        wd.findElement(locator).sendKeys(text);
+      }
     }
   }
 
-  protected boolean checkSelection(By locator) {
+  boolean checkSelection(By locator) {
     return wd.findElement(locator).isSelected();
   }
 
@@ -40,5 +44,12 @@ public class HelperBase {
     }
   }
 
-
+  boolean isElementPresent (By locator){
+    try{
+      wd.findElement(locator);
+      return true;
+    } catch (NoSuchElementException ex){
+      return false;
+    }
+  }
 }

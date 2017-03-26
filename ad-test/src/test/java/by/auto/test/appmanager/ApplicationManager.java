@@ -19,12 +19,11 @@ import org.openqa.selenium.remote.BrowserType.*;
  */
 public class ApplicationManager {
 
-  WebDriver wd;
+  private WebDriver wd;
 
   private ContactHelper contactHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
-  private SessionHelper sessionHelper;
   private String browser;
 
   public ApplicationManager(String browser) {
@@ -32,20 +31,20 @@ public class ApplicationManager {
   }
 
   public void init() {
-    if (Objects.equals(browser, BrowserType.FIREFOX)) {
+    if (browser.equals(BrowserType.FIREFOX)) {
       wd = new FirefoxDriver();
-    } else if (Objects.equals(browser, BrowserType.CHROME)){
+    } else if (browser.equals(BrowserType.CHROME)){
       wd = new ChromeDriver();
-    } else if (Objects.equals(browser, BrowserType.IE)){
+    } else if (browser.equals(BrowserType.IE)){
       wd = new InternetExplorerDriver();
     }
 
-    wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/");
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     contactHelper = new ContactHelper(wd);
-    sessionHelper = new SessionHelper(wd);
+    SessionHelper sessionHelper = new SessionHelper(wd);
     sessionHelper.login("admin", "secret");
   }
 
