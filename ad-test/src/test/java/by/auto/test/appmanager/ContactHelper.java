@@ -4,11 +4,15 @@ import by.auto.test.model.ContactObject;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by AlexD on 3/19/2017.
@@ -62,8 +66,8 @@ public class ContactHelper extends HelperBase{
     }
   }
 
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void deleteContact() {
@@ -74,8 +78,8 @@ public class ContactHelper extends HelperBase{
     wd.switchTo().alert().accept();
   }
 
-  public void initContactEdition() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+  public void initContactEdition(int index) {
+    wd.findElements(By.xpath("a/img")).get(index).click();
   }
 
   public void submitContactEdition() {
@@ -90,5 +94,19 @@ public class ContactHelper extends HelperBase{
 
   public boolean isThereContact() {
     return (isElementPresent(By.name("selected[]")) && isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")));
+  }
+
+  public List<ContactObject> getContactsList() {
+    List<ContactObject> contacts = new ArrayList<>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element : elements){
+      String lastName = element.findElements(By.tagName("td")).get(1).getText();
+      String firstName = element.findElements(By.tagName("td")).get(2).getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+     // String id = (element.getCssValue("id"));
+     System.out.println(id);
+      contacts.add(new ContactObject(id, firstName,  lastName));
+    }
+    return contacts;
   }
 }

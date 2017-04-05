@@ -4,7 +4,11 @@ import by.auto.test.model.GroupObject;
 import com.sun.javafx.image.BytePixelSetter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by AlexD on 3/19/2017.
@@ -34,8 +38,8 @@ public class GroupHelper extends HelperBase{
   }
 
 
-  public void selectGroup() {
-    click(By.name("selected[]"));
+  public void selectGroup(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void deleteGroup() {
@@ -63,5 +67,21 @@ public class GroupHelper extends HelperBase{
 
   public boolean isThereGroupByGroupName(String groupName) {
     return (wd.findElement(By.xpath("//div[@id='content']//span")).getText().equals(groupName));
+  }
+
+  public int getGroupCount() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<GroupObject> getGroupList() {
+    List<GroupObject> groups = new ArrayList<>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+    for (WebElement element: elements){
+      String name  = element.getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      GroupObject group= new GroupObject(id, name, null, null);
+      groups.add(group);
+    }
+    return groups;
   }
 }
