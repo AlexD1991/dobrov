@@ -14,12 +14,12 @@ public class GroupModification extends TestBase {
   public void testGroupModification(){
     app.getNavigationHelper().goToGroupPage();
     if (! app.getGroupHelper().isThereGroup()){
-      app.getGroupHelper().createGroup(new GroupObject("test1","Test2","Test3"));
+      app.getGroupHelper().createGroup(new GroupObject(app.getGroupHelper().randomTextGeneration(),app.getGroupHelper().randomTextGeneration(),app.getGroupHelper().randomTextGeneration()));
     }
     List<GroupObject> before = app.getGroupHelper().getGroupList();
     app.getGroupHelper().selectGroup(before.size() - 1);
     app.getGroupHelper().initGroupModification();
-    GroupObject group = new GroupObject(before.get(before.size()-1).getId(),"5", "5", "5");
+    GroupObject group = new GroupObject(before.get(before.size()-1).getId(),app.getGroupHelper().randomTextGeneration(), app.getGroupHelper().randomTextGeneration(), app.getGroupHelper().randomTextGeneration());
     app.getGroupHelper().fillGroupFields(group);
     app.getGroupHelper().submitGroupModification();
     app.getGroupHelper().returnToGroupPage();

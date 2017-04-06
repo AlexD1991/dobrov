@@ -79,7 +79,7 @@ public class ContactHelper extends HelperBase{
   }
 
   public void initContactEdition(int index) {
-    wd.findElements(By.xpath("a/img")).get(index).click();
+    wd.findElements(By.name("entry")).get(index).findElements(By.tagName("a")).get(1).click();
   }
 
   public void submitContactEdition() {
@@ -108,5 +108,19 @@ public class ContactHelper extends HelperBase{
       contacts.add(new ContactObject(id, firstName,  lastName));
     }
     return contacts;
+  }
+
+  public boolean checkSpecificGroupPresentAndReturnToHomePage(String group) {
+    goToGroupPage();
+    List<WebElement> find = wd.findElements(By.cssSelector("span.group"));
+    for (WebElement i : find){
+      System.out.println(i.getText());
+      if (i.getText().equals(group)){
+        goToHomePageHeaderLink();
+        return true;
+      }
+    }
+    goToHomePageHeaderLink();
+    return false;
   }
 }

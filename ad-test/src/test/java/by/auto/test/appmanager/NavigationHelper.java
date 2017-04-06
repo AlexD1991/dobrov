@@ -20,14 +20,7 @@ public class NavigationHelper extends HelperBase{
     click(By.linkText("add new"));
   }
 
-  public void goToGroupPage() {
-    if (isElementPresent(By.tagName("h1"))
-            && isElementPresent(By.name("new"))
-            && wd.findElement(By.tagName("h1")).getText().equals("Groups")){
-      return;
-    }
-    click(By.linkText("groups"));
-  }
+
 
 
   public void returnToHomePage() {
@@ -37,7 +30,5 @@ public class NavigationHelper extends HelperBase{
     click(By.linkText("home page"));
   }
 
-  public void goToHomePageHeaderLink() {
-    click(By.linkText("home"));
-  }
+
 }

@@ -17,8 +17,16 @@ public  class ContactCreation extends TestBase{
   @Test
   public void testContactCreation() {
     List<ContactObject> before = app.getContactHelper().getContactsList();
+
+    String groupFind = "GroupName1";
+    if (!app.getContactHelper().checkSpecificGroupPresentAndReturnToHomePage(groupFind)){
+      app.getNavigationHelper().goToGroupPage();
+      GroupObject group = new GroupObject(groupFind,app.getGroupHelper().randomTextGeneration(), app.getGroupHelper().randomTextGeneration());
+      app.getGroupHelper().createGroup(group);
+      app.getNavigationHelper().goToHomePageHeaderLink();
+    }
     app.getNavigationHelper().clickNewContact();
-    ContactObject contact = new ContactObject("11", null, "11", "11", "11", "11", "1", "1", "", "1", "1", "2000", "1990", "GroupName1");
+    ContactObject contact = new ContactObject(app.getGroupHelper().randomTextGeneration(), null, app.getGroupHelper().randomTextGeneration(), "11", "11", "11", "1", "1", "", "1", "1", "2000", "1990", groupFind);
     app.getContactHelper().createContact(contact, true);
     app.getNavigationHelper().returnToHomePage();
     List<ContactObject> after = app.getContactHelper().getContactsList();
@@ -31,5 +39,4 @@ public  class ContactCreation extends TestBase{
     Assert.assertEquals(before, after);
 
   }
-
 }

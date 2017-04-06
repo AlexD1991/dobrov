@@ -23,7 +23,7 @@ public class ContactDeletion extends TestBase {
 
     if (! app.getContactHelper().isThereContact()){
       app.getNavigationHelper().clickNewContact();
-      app.getContactHelper().createContact(new ContactObject("11", null, "11", "11", "11", "11", "1", "1", "", "1", "1", "2000", "1990", groupName), true);
+      app.getContactHelper().createContact(new ContactObject(app.getGroupHelper().randomTextGeneration(), null, app.getGroupHelper().randomTextGeneration(), "11", "11", "11", "1", "1", "", "1", "1", "2000", "1990", groupName), true);
       app.getNavigationHelper().returnToHomePage();
     }
     List<ContactObject> before = app.getContactHelper().getContactsList();

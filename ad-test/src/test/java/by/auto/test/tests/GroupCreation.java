@@ -14,7 +14,7 @@ public class GroupCreation extends TestBase {
   public void testGroupCreation() {
     app.getNavigationHelper().goToGroupPage();
     List<GroupObject> before = app.getGroupHelper().getGroupList();
-    GroupObject group = new GroupObject("1","2", "3");
+    GroupObject group = new GroupObject(app.getGroupHelper().randomTextGeneration(),app.getGroupHelper().randomTextGeneration(), app.getGroupHelper().randomTextGeneration());
     app.getGroupHelper().createGroup(group);
     List<GroupObject> after = app.getGroupHelper().getGroupList();
     before.add(group);

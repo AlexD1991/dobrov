@@ -6,6 +6,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
 /**
  * Created by AlexD on 3/19/2017.
  */
@@ -31,6 +34,8 @@ public class HelperBase {
     }
   }
 
+
+
   boolean checkSelection(By locator) {
     return wd.findElement(locator).isSelected();
   }
@@ -51,5 +56,22 @@ public class HelperBase {
     } catch (NoSuchElementException ex){
       return false;
     }
+  }
+  public String randomTextGeneration() {
+    SecureRandom random = new SecureRandom();
+    return new BigInteger(50, random).toString(32);
+  }
+
+  public void goToGroupPage() {
+    if (isElementPresent(By.tagName("h1"))
+            && isElementPresent(By.name("new"))
+            && wd.findElement(By.tagName("h1")).getText().equals("Groups")){
+      return;
+    }
+    click(By.linkText("groups"));
+  }
+
+  public void goToHomePageHeaderLink() {
+    click(By.linkText("home"));
   }
 }
