@@ -1,18 +1,16 @@
 package by.auto.test.appmanager;
 
 import by.auto.test.model.ContactObject;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by AlexD on 3/19/2017.
@@ -66,8 +64,8 @@ public class ContactHelper extends HelperBase{
     }
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[id='"+id+"']")).click();
   }
 
   public void deleteContact() {
@@ -78,15 +76,15 @@ public class ContactHelper extends HelperBase{
     wd.switchTo().alert().accept();
   }
 
-  public void initContactEdition(int index) {
-    wd.findElements(By.name("entry")).get(index).findElements(By.tagName("a")).get(1).click();
+  public void initContactEdition(int id) {
+    wd.findElement(By.cssSelector("a[href='edit.php?id="+id+"']")).click();
   }
 
   public void submitContactEdition() {
     click(By.name("update"));
   }
 
-  public void createContact(ContactObject contact, boolean creation) {
+  public void create(ContactObject contact, boolean creation) {
     fillContactFields(contact, creation);
     submitContactCreation();
 
@@ -96,25 +94,36 @@ public class ContactHelper extends HelperBase{
     return (isElementPresent(By.name("selected[]")) && isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")));
   }
 
-  public List<ContactObject> getContactsList() {
+  public List<ContactObject> list() {
     List<ContactObject> contacts = new ArrayList<>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements){
       String lastName = element.findElements(By.tagName("td")).get(1).getText();
       String firstName = element.findElements(By.tagName("td")).get(2).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-     // String id = (element.getCssValue("id"));
-     System.out.println(id);
-      contacts.add(new ContactObject(id, firstName,  lastName));
+      System.out.println(lastName+" "+ firstName+" "+id);
+      contacts.add(new ContactObject().withId(id).withFN(firstName).withLN(lastName));
+    }
+    return contacts;
+  }
+
+  public Set<ContactObject> all() {
+    Set<ContactObject> contacts = new HashSet<>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element : elements){
+      String lastName = element.findElements(By.tagName("td")).get(1).getText();
+      String firstName = element.findElements(By.tagName("td")).get(2).getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+      System.out.println(lastName+" "+ firstName+" "+id);
+      contacts.add(new ContactObject().withId(id).withFN(firstName).withLN(lastName));
     }
     return contacts;
   }
 
   public boolean checkSpecificGroupPresentAndReturnToHomePage(String group) {
-    goToGroupPage();
+    groupPage();
     List<WebElement> find = wd.findElements(By.cssSelector("span.group"));
     for (WebElement i : find){
-      System.out.println(i.getText());
       if (i.getText().equals(group)){
         goToHomePageHeaderLink();
         return true;
@@ -122,5 +131,42 @@ public class ContactHelper extends HelperBase{
     }
     goToHomePageHeaderLink();
     return false;
+  }
+
+  public void create(ContactObject contact) {
+    clickNew();
+    create(contact, true);
+    returnToHomePage();
+  }
+
+  public void clickNew() {
+    if (isElementPresent(By.name("submit")) && wd.findElement(By.name("submit")).getText().equals("Enter")){
+      return;
+    }
+    click(By.linkText("add new"));
+  }
+
+
+
+
+  public void returnToHomePage() {
+    if (isElementPresent(By.id("maintable"))){
+      return;
+    }
+    click(By.linkText("home page"));
+  }
+
+  public void modify(ContactObject contact) {
+    initContactEdition(contact.getId());
+    fillContactFields(contact, false);
+    submitContactEdition();
+    goToHomePageHeaderLink();
+  }
+
+  public void delete(ContactObject contact) {
+    selectContactById(contact.getId());
+    deleteContact();
+    confirmDeletion();
+    goToHomePageHeaderLink();
   }
 }

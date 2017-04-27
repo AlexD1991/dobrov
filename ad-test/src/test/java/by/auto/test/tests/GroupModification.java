@@ -2,34 +2,35 @@ package by.auto.test.tests;
 
 import by.auto.test.model.GroupObject;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.nio.file.attribute.GroupPrincipal;
 import java.util.*;
 
 /**
  * Created by AlexD on 3/19/2017.
  */
 public class GroupModification extends TestBase {
+  @BeforeMethod
+  public void ensurePreconditions(){
+    app.goTo().groupPage();
+    if (app.group().all().size()==0){
+      app.group().create(new GroupObject().withName(app.group().randomTextGeneration()).withFooter(app.group().randomTextGeneration()).withHeader(app.group().randomTextGeneration()));
+    }
+  }
+
   @Test
   public void testGroupModification(){
-    app.getNavigationHelper().goToGroupPage();
-    if (! app.getGroupHelper().isThereGroup()){
-      app.getGroupHelper().createGroup(new GroupObject(app.getGroupHelper().randomTextGeneration(),app.getGroupHelper().randomTextGeneration(),app.getGroupHelper().randomTextGeneration()));
-    }
-    List<GroupObject> before = app.getGroupHelper().getGroupList();
-    app.getGroupHelper().selectGroup(before.size() - 1);
-    app.getGroupHelper().initGroupModification();
-    GroupObject group = new GroupObject(before.get(before.size()-1).getId(),app.getGroupHelper().randomTextGeneration(), app.getGroupHelper().randomTextGeneration(), app.getGroupHelper().randomTextGeneration());
-    app.getGroupHelper().fillGroupFields(group);
-    app.getGroupHelper().submitGroupModification();
-    app.getGroupHelper().returnToGroupPage();
-    List<GroupObject> after = app.getGroupHelper().getGroupList();
+    Set<GroupObject> before = app.group().all();
+    GroupObject modifiedGroup = before.iterator().next();
+    GroupObject group = new GroupObject().withId(modifiedGroup.getId()).withName(app.group().randomTextGeneration()).withFooter(app.group().randomTextGeneration()).withHeader(app.group().randomTextGeneration());
+    app.group().modify(group);
+    Set<GroupObject> after = app.group().all();
     Assert.assertEquals(after.size(), before.size());
-    before.remove(before.size()-1);
+    before.remove(modifiedGroup);
     before.add(group);
-    Comparator<? super GroupObject> byId = (g1,g2) -> Integer.compare(g1.getId(),g2.getId());
-    before.sort(byId);
-    after.sort(byId);
     Assert.assertEquals(before,after);
   }
+
 }

@@ -2,32 +2,36 @@ package by.auto.test.tests;
 
 import by.auto.test.model.GroupObject;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by AlexD on 3/19/2017.
  */
 public class GroupDeletion extends TestBase {
+  @BeforeMethod
+  public void ensurePreconditions(){
+    app.goTo().groupPage();
+    if (app.group().all().size()==0){
+      app.group().create(new GroupObject().withName(app.group().randomTextGeneration()).withFooter(app.group().randomTextGeneration()).withHeader(app.group().randomTextGeneration()));
+    }
+  }
+
   @Test
   public void testGroupDeletion(){
-    app.getNavigationHelper().goToGroupPage();
-    if (! app.getGroupHelper().isThereGroup()){
-      app.getGroupHelper().createGroup(new GroupObject(app.getGroupHelper().randomTextGeneration(),app.getGroupHelper().randomTextGeneration(),app.getGroupHelper().randomTextGeneration()));
-    }
-    List<GroupObject> before = app.getGroupHelper().getGroupList();
-    int index = before.size() - 1;
-    app.getGroupHelper().selectGroup(index);
-    app.getGroupHelper().deleteGroup();
-    app.getGroupHelper().returnToGroupPage();
-    List<GroupObject> after = app.getGroupHelper().getGroupList();
-    Assert.assertEquals(after.size(), index);
-    before.remove(index);
-    Comparator<? super GroupObject> byId = (g1, g2) -> Integer.compare(g1.getId(),g2.getId());
-    before.sort(byId);
-    after.sort(byId);
+
+    Set<GroupObject> before = app.group().all();
+    GroupObject deletedGroup = before.iterator().next();
+    app.group().delete(deletedGroup);
+    Set<GroupObject> after = app.group().all();
+    Assert.assertEquals(after.size(), before.size()-1);
+    before.remove(deletedGroup);
     Assert.assertEquals(before, after);
   }
+
+
 }

@@ -1,75 +1,97 @@
 package by.auto.test.model;
 
 public class ContactObject {
-  private final String contactFN;
-  private final String contactMN;
-  private final String contactLN;
-  private final String contactNickName;
-  private final String contactTitle;
-  private final String contactCompany;
-  private final String contactAddress;
-  private final String contactHome;
-  private final String contactMobile;
-  private final String contactWork;
-  private final String contactFax;
-  private final String contactMarryYear;
-  private final String contactBirthYear;
+  private String contactFN;
+  private String contactMN;
+  private String contactLN;
+  private String contactNickName;
+  private String contactTitle;
+  private String contactCompany;
+  private String contactAddress;
+  private String contactHome;
+  private String contactMobile;
+  private String contactWork;
+  private String contactFax;
+  private String contactMarryYear;
+  private String contactBirthYear;
   private String group;
-  private int id;
+  private int id = Integer.MAX_VALUE;
 
-  public ContactObject(int id, String contactFN, String contactMN, String contactLN, String contactNickName, String contactTitle, String contactCompany, String contactAddress, String contactHome, String contactMobile, String contactWork, String contactFax, String contactMarryYear, String contactBirthYear, String group) {
+  public ContactObject withFN(String contactFN) {
     this.contactFN = contactFN;
+    return this;
+  }
+
+  public ContactObject withMN(String contactMN) {
     this.contactMN = contactMN;
-    this.contactLN = contactLN;
-    this.contactNickName = contactNickName;
-    this.contactTitle = contactTitle;
-    this.contactCompany = contactCompany;
-    this.contactAddress = contactAddress;
-    this.contactHome = contactHome;
-    this.contactMobile = contactMobile;
-    this.contactWork = contactWork;
-    this.contactFax = contactFax;
-    this.contactMarryYear = contactMarryYear;
-    this.contactBirthYear = contactBirthYear;
-    this.group = group;
-    this.id = id;
+    return this;
   }
 
-  public ContactObject(String contactFN, String contactMN, String contactLN, String contactNickName, String contactTitle, String contactCompany, String contactAddress, String contactHome, String contactMobile, String contactWork, String contactFax, String contactMarryYear, String contactBirthYear, String group) {
-    this.contactFN = contactFN;
-    this.contactMN = contactMN;
+  public ContactObject withLN(String contactLN) {
     this.contactLN = contactLN;
-    this.contactNickName = contactNickName;
-    this.contactTitle = contactTitle;
-    this.contactCompany = contactCompany;
-    this.contactAddress = contactAddress;
-    this.contactHome = contactHome;
-    this.contactMobile = contactMobile;
-    this.contactWork = contactWork;
-    this.contactFax = contactFax;
-    this.contactMarryYear = contactMarryYear;
-    this.contactBirthYear = contactBirthYear;
-    this.group = group;
-    this.id = Integer.MAX_VALUE;
+    return this;
   }
 
-  public ContactObject(int id, String contactFN, String contactLN) {
-    this.contactFN = contactFN;
-    this.contactMN = null;
-    this.contactLN = contactLN;
-    this.contactNickName = null;
-    this.contactTitle = null;
-    this.contactCompany = null;
-    this.contactAddress = null;
-    this.contactHome = null;
-    this.contactMobile = null;
-    this.contactWork = null;
-    this.contactFax = null;
-    this.contactMarryYear = null;
-    this.contactBirthYear = null;
-    this.group = null;
-    this.id = id;
+  public ContactObject withNickName(String contactNickName) {
+    this.contactNickName = contactNickName;
+    return this;
   }
+
+  public ContactObject withTitle(String contactTitle) {
+    this.contactTitle = contactTitle;
+    return this;
+  }
+
+  public ContactObject withCompany(String contactCompany) {
+    this.contactCompany = contactCompany;
+    return this;
+  }
+
+  public ContactObject withAddress(String contactAddress) {
+    this.contactAddress = contactAddress;
+    return this;
+  }
+
+  public ContactObject withHome(String contactHome) {
+    this.contactHome = contactHome;
+    return this;
+  }
+
+  public ContactObject withMobile(String contactMobile) {
+    this.contactMobile = contactMobile;
+    return this;
+  }
+
+  public ContactObject withWork(String contactWork) {
+    this.contactWork = contactWork;
+    return this;
+  }
+
+  public ContactObject withFax(String contactFax) {
+    this.contactFax = contactFax;
+    return this;
+  }
+
+  public ContactObject withMarryYear(String contactMarryYear) {
+    this.contactMarryYear = contactMarryYear;
+    return this;
+  }
+
+  public ContactObject withBirthYear(String contactBirthYear) {
+    this.contactBirthYear = contactBirthYear;
+    return this;
+  }
+
+  public ContactObject withGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
+  public ContactObject withId(int id) {
+    this.id = id;
+    return this;
+  }
+
 
   public String getContactFN() {
     return contactFN;

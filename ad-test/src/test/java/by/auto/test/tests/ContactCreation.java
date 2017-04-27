@@ -3,40 +3,32 @@ package by.auto.test.tests;
 import by.auto.test.model.ContactObject;
 import by.auto.test.model.GroupObject;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import static java.util.Collections.*;
+import java.util.Set;
 
 public  class ContactCreation extends TestBase{
-
+  @BeforeMethod
+  public void ensurePreconditions(){
+    if (!app.contact().checkSpecificGroupPresentAndReturnToHomePage("GroupName1")){
+      app.goTo().groupPage();
+      GroupObject group = new GroupObject().withName("GroupName1");
+      app.group().create(group);
+      app.goTo().goToHomePageHeaderLink();
+    }
+  }
 
   @Test
   public void testContactCreation() {
-    List<ContactObject> before = app.getContactHelper().getContactsList();
-
-    String groupFind = "GroupName1";
-    if (!app.getContactHelper().checkSpecificGroupPresentAndReturnToHomePage(groupFind)){
-      app.getNavigationHelper().goToGroupPage();
-      GroupObject group = new GroupObject(groupFind,app.getGroupHelper().randomTextGeneration(), app.getGroupHelper().randomTextGeneration());
-      app.getGroupHelper().createGroup(group);
-      app.getNavigationHelper().goToHomePageHeaderLink();
-    }
-    app.getNavigationHelper().clickNewContact();
-    ContactObject contact = new ContactObject(app.getGroupHelper().randomTextGeneration(), null, app.getGroupHelper().randomTextGeneration(), "11", "11", "11", "1", "1", "", "1", "1", "2000", "1990", groupFind);
-    app.getContactHelper().createContact(contact, true);
-    app.getNavigationHelper().returnToHomePage();
-    List<ContactObject> after = app.getContactHelper().getContactsList();
+    Set<ContactObject> before = app.contact().all();
+    ContactObject contact = new ContactObject().withFN(app.group().randomTextGeneration()).withLN(app.group().randomTextGeneration()).withNickName("11").withTitle("Titlererer").withMobile("Mobile").withGroup("GroupName1");
+    app.contact().create(contact);
+    Set<ContactObject> after = app.contact().all();
     before.add(contact);
-
-
-    Comparator<? super ContactObject> byId = (c1, c2) -> Integer.compare(c1.getId(),c2.getId());
-    before.sort(byId);
-    after.sort(byId);
     Assert.assertEquals(before, after);
-
   }
+
 }

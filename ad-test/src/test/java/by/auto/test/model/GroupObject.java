@@ -1,33 +1,51 @@
 package by.auto.test.model;
 
 public class GroupObject {
-  private final String groupName;
-  private final String groupHeader;
-  private final String groupFooter;
-  private int id;
+  private String groupName;
+  private String groupHeader;
+  private String groupFooter;
+  private int id = Integer.MAX_VALUE;
 
-  public GroupObject(int id, String groupName, String groupHeader, String groupFooter) {
-    this.groupName = groupName;
-    this.groupHeader = groupHeader;
-    this.groupFooter = groupFooter;
+  public GroupObject withId(int id) {
     this.id = id;
+    return this;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    GroupObject that = (GroupObject) o;
+
+    if (id != that.id) return false;
+    return groupName != null ? groupName.equals(that.groupName) : that.groupName == null;
   }
 
+  @Override
+  public int hashCode() {
+    int result = groupName != null ? groupName.hashCode() : 0;
+    result = 31 * result + id;
+    return result;
+  }
 
-
-  public GroupObject(String groupName, String groupHeader, String groupFooter) {
+  public GroupObject withName(String groupName) {
     this.groupName = groupName;
-    this.groupHeader = groupHeader;
-    this.groupFooter = groupFooter;
-    this.id = Integer.MAX_VALUE;
 
+    return this;
   }
 
-  public String getGroupName() {
+  public GroupObject withHeader(String groupHeader) {
+    this.groupHeader = groupHeader;
+    return this;
+  }
+
+  public GroupObject withFooter(String groupFooter) {
+    this.groupFooter = groupFooter;
+    return this;
+  }
+
+   public String getGroupName() {
     return groupName;
   }
 
@@ -52,18 +70,4 @@ public class GroupObject {
             '}';
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    GroupObject that = (GroupObject) o;
-
-    return groupName != null ? groupName.equals(that.groupName) : that.groupName == null;
-  }
-
-  @Override
-  public int hashCode() {
-    return groupName != null ? groupName.hashCode() : 0;
-  }
 }

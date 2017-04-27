@@ -5,22 +5,20 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class GroupCreation extends TestBase {
 
   @Test
   public void testGroupCreation() {
-    app.getNavigationHelper().goToGroupPage();
-    List<GroupObject> before = app.getGroupHelper().getGroupList();
-    GroupObject group = new GroupObject(app.getGroupHelper().randomTextGeneration(),app.getGroupHelper().randomTextGeneration(), app.getGroupHelper().randomTextGeneration());
-    app.getGroupHelper().createGroup(group);
-    List<GroupObject> after = app.getGroupHelper().getGroupList();
+    app.goTo().groupPage();
+    Set<GroupObject> before = app.group().all();
+    GroupObject group = new GroupObject().withName(app.group().randomTextGeneration()).withFooter(app.group().randomTextGeneration()).withHeader(app.group().randomTextGeneration());
+    app.group().create(group);
+    Set<GroupObject> after = app.group().all();
+    group.withId(after.stream().mapToInt((g)-> g.getId()).max().getAsInt());
     before.add(group);
-    Comparator<? super GroupObject> byId = (g1, g2) -> Integer.compare(g1.getId(),g2.getId());
-    before.sort(byId);
-    after.sort(byId);
     Assert.assertEquals(before,after);
   }
 

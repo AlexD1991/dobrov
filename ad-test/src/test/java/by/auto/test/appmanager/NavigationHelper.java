@@ -13,22 +13,7 @@ public class NavigationHelper extends HelperBase{
     super(wd);
   }
 
-  public void clickNewContact() {
-    if (isElementPresent(By.name("submit")) && wd.findElement(By.name("submit")).getText().equals("Enter")){
-      return;
-    }
-    click(By.linkText("add new"));
-  }
 
-
-
-
-  public void returnToHomePage() {
-    if (isElementPresent(By.id("maintable"))){
-      return;
-    }
-    click(By.linkText("home page"));
-  }
 
 
 }

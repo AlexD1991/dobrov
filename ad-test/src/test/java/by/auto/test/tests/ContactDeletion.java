@@ -3,40 +3,33 @@ package by.auto.test.tests;
 import by.auto.test.model.ContactObject;
 import by.auto.test.model.GroupObject;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by AlexD on 3/19/2017.
  */
 public class ContactDeletion extends TestBase {
+  @BeforeMethod
+  public void ensurePreconditions(){
+    if (! app.contact().isThereContact()){
+      app.contact().clickNew();
+      app.contact().create(new ContactObject().withLN(app.group().randomTextGeneration()).withFN(app.group().randomTextGeneration()).withCompany("11").withGroup("GroupName1"), true);
+      app.contact().returnToHomePage();
+    }
+  }
+
   @Test
   public void testContactDeletion(){
-    String groupName= "GroupName1";
-//    //if (!app.getGroupHelper().isThereGroupByGroupName(groupName)){
-//      app.getNavigationHelper().goToGroupPage();
-//      app.getGroupHelper().createGroup(new GroupObject(groupName, "1", "2"));
-//      app.getNavigationHelper().goToHomePageHeaderLink();
-//    //}
-
-    if (! app.getContactHelper().isThereContact()){
-      app.getNavigationHelper().clickNewContact();
-      app.getContactHelper().createContact(new ContactObject(app.getGroupHelper().randomTextGeneration(), null, app.getGroupHelper().randomTextGeneration(), "11", "11", "11", "1", "1", "", "1", "1", "2000", "1990", groupName), true);
-      app.getNavigationHelper().returnToHomePage();
-    }
-    List<ContactObject> before = app.getContactHelper().getContactsList();
-    int index = before.size()-1;
-    app.getContactHelper().selectContact(index);
-    app.getContactHelper().deleteContact();
-    app.getContactHelper().confirmDeletion();
-    app.getNavigationHelper().goToHomePageHeaderLink();
-    List<ContactObject> after = app.getContactHelper().getContactsList();
-    before.remove(index);
-    Comparator<? super ContactObject> byId = (c1, c2) -> Integer.compare(c1.getId(),c2.getId());
-    before.sort(byId);
-    after.sort(byId);
+    Set<ContactObject> before = app.contact().all();
+    ContactObject deletedContact = before.iterator().next();
+    app.contact().delete(deletedContact);
+    Set<ContactObject> after = app.contact().all();
+    before.remove(deletedContact);
     Assert.assertEquals(before, after);
   }
 }

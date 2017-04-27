@@ -62,7 +62,7 @@ public class HelperBase {
     return new BigInteger(50, random).toString(32);
   }
 
-  public void goToGroupPage() {
+  public void groupPage() {
     if (isElementPresent(By.tagName("h1"))
             && isElementPresent(By.name("new"))
             && wd.findElement(By.tagName("h1")).getText().equals("Groups")){
