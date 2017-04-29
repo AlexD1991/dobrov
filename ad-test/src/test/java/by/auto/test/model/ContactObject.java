@@ -15,10 +15,61 @@ public class ContactObject {
   private String contactMarryYear;
   private String contactBirthYear;
   private String group;
+  private String contactHome2;
+  private String email1;
+  private String email2;
+  private String email3;
+  private String allPhones;
   private int id = Integer.MAX_VALUE;
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public ContactObject withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
+
+
+  public ContactObject withEmail1(String email1) {
+    this.email1 = email1;
+    return this;
+  }
+
+  public ContactObject withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+
+  public ContactObject withEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
+
+  public String getEmail1() {
+
+    return email1;
+  }
+
+  public String getEmail2() {
+    return email2;
+  }
+
+  public String getEmail3() {
+    return email3;
+  }
+
+
 
   public ContactObject withFN(String contactFN) {
     this.contactFN = contactFN;
+    return this;
+  }
+
+  public ContactObject withHome2(String contactHome2) {
+    this.contactHome2 = contactHome2;
     return this;
   }
 
@@ -123,6 +174,10 @@ public class ContactObject {
 
   public String getContactHome() {
     return contactHome;
+  }
+
+  public String getContactHome2() {
+    return contactHome2;
   }
 
   public String getContactMobile() {

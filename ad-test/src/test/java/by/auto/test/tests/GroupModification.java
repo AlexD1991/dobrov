@@ -1,12 +1,18 @@
 package by.auto.test.tests;
 
 import by.auto.test.model.GroupObject;
+import by.auto.test.model.Groups;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.nio.file.attribute.GroupPrincipal;
 import java.util.*;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
 
 /**
  * Created by AlexD on 3/19/2017.
@@ -22,15 +28,12 @@ public class GroupModification extends TestBase {
 
   @Test
   public void testGroupModification(){
-    Set<GroupObject> before = app.group().all();
+    Groups before = app.group().all();
     GroupObject modifiedGroup = before.iterator().next();
     GroupObject group = new GroupObject().withId(modifiedGroup.getId()).withName(app.group().randomTextGeneration()).withFooter(app.group().randomTextGeneration()).withHeader(app.group().randomTextGeneration());
     app.group().modify(group);
-    Set<GroupObject> after = app.group().all();
-    Assert.assertEquals(after.size(), before.size());
-    before.remove(modifiedGroup);
-    before.add(group);
-    Assert.assertEquals(before,after);
+    assertThat(app.group().count(), equalTo(before.size()));
+    Groups after = app.group().all();
+    assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
   }
-
 }

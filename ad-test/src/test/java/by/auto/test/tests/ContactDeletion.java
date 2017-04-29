@@ -1,14 +1,15 @@
 package by.auto.test.tests;
 
 import by.auto.test.model.ContactObject;
-import by.auto.test.model.GroupObject;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import by.auto.test.model.Contacts;
 
-import java.util.Comparator;
-import java.util.List;
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by AlexD on 3/19/2017.
@@ -16,7 +17,7 @@ import java.util.Set;
 public class ContactDeletion extends TestBase {
   @BeforeMethod
   public void ensurePreconditions(){
-    if (! app.contact().isThereContact()){
+    if (! app.contact().present()){
       app.contact().clickNew();
       app.contact().create(new ContactObject().withLN(app.group().randomTextGeneration()).withFN(app.group().randomTextGeneration()).withCompany("11").withGroup("GroupName1"), true);
       app.contact().returnToHomePage();
@@ -25,11 +26,11 @@ public class ContactDeletion extends TestBase {
 
   @Test
   public void testContactDeletion(){
-    Set<ContactObject> before = app.contact().all();
+    Contacts before = app.contact().all();
     ContactObject deletedContact = before.iterator().next();
     app.contact().delete(deletedContact);
-    Set<ContactObject> after = app.contact().all();
-    before.remove(deletedContact);
-    Assert.assertEquals(before, after);
+    assertThat(app.contact().count(), equalTo(before.size()-1));
+    Contacts after = app.contact().all();
+    assertThat(after, equalTo(before.without(deletedContact)));
   }
 }

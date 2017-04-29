@@ -1,6 +1,7 @@
 package by.auto.test.tests;
 
 import by.auto.test.model.ContactObject;
+import by.auto.test.model.Contacts;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -8,6 +9,9 @@ import org.testng.annotations.Test;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by AlexD on 3/19/2017.
@@ -25,15 +29,13 @@ public class ContactModification extends TestBase {
   @Test
   public void testContactModification(){
 
-    Set<ContactObject> before = app.contact().all();
+    Contacts before = app.contact().all();
     ContactObject modifiedContact = before.iterator().next();
     ContactObject contact = new ContactObject().withId(modifiedContact.getId()).withLN(app.group().randomTextGeneration()).withFN(app.group().randomTextGeneration());
     app.contact().modify(contact);
-    Set<ContactObject> after = app.contact().all();
-    before.remove(modifiedContact);
-    before.add(contact);
-    Assert.assertEquals(before, after);
-
+    assertThat(app.contact().count(), equalTo(before.size()));
+    Contacts after = app.contact().all();
+    assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
   }
 
 }

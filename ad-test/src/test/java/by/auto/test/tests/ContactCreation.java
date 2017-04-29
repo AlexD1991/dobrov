@@ -5,10 +5,14 @@ import by.auto.test.model.GroupObject;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import by.auto.test.model.Contacts;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public  class ContactCreation extends TestBase{
   @BeforeMethod
@@ -23,12 +27,13 @@ public  class ContactCreation extends TestBase{
 
   @Test
   public void testContactCreation() {
-    Set<ContactObject> before = app.contact().all();
+    Contacts before = app.contact().all();
     ContactObject contact = new ContactObject().withFN(app.group().randomTextGeneration()).withLN(app.group().randomTextGeneration()).withNickName("11").withTitle("Titlererer").withMobile("Mobile").withGroup("GroupName1");
     app.contact().create(contact);
-    Set<ContactObject> after = app.contact().all();
-    before.add(contact);
-    Assert.assertEquals(before, after);
+    assertThat(app.contact().count(), equalTo(before.size()+1));
+    Contacts after = app.contact().all();
+
+    assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((g)-> g.getId()).max().getAsInt()))));
   }
 
 }
