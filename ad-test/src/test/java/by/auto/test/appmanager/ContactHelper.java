@@ -120,9 +120,11 @@ public class ContactHelper extends HelperBase{
     for (WebElement element : elements){
       String lastName = element.findElements(By.tagName("td")).get(1).getText();
       String firstName = element.findElements(By.tagName("td")).get(2).getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+      String address = element.findElements(By.tagName("td")).get(3).getText();
+      String allEmails = element.findElements(By.tagName("td")).get(4).getText();
       String allPhones = element.findElements(By.tagName("td")).get(5).getText();
-      ContactObject contact = new ContactObject().withId(id).withFN(firstName).withLN(lastName).withAllPhones(allPhones);
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+      ContactObject contact = new ContactObject().withId(id).withFN(firstName).withLN(lastName).withAllPhones(allPhones).withAllEmails(allEmails).withAddress(address);
       contactsCache.add(contact);
     }
     return new Contacts(contactsCache);

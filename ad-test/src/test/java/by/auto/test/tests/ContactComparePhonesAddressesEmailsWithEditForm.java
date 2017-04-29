@@ -21,11 +21,14 @@ public class ContactComparePhonesAddressesEmailsWithEditForm extends TestBase{
         ContactObject contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
         assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
-
+        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
+        assertThat(contact.getContactAddress(), equalTo(contactInfoFromEditForm.getContactAddress()));
 
     }
 
-    public String mergePhones(ContactObject contact){
+
+
+    private String mergePhones(ContactObject contact){
         return Arrays.asList(contact.getContactHome(), contact.getContactMobile(), contact.getContactWork(), contact.getContactHome2())
                 .stream()
                 .filter((s)-> !s.equals(""))
@@ -33,7 +36,14 @@ public class ContactComparePhonesAddressesEmailsWithEditForm extends TestBase{
                 .collect(Collectors.joining("\n"));
     }
 
-    public static String cleaned (String phone){
+    private String mergeEmails (ContactObject contact){
+        return Arrays.asList(contact.getEmail1(), contact.getEmail2(), contact.getEmail3())
+                .stream()
+                .filter((s)-> !s.equals(""))
+                .collect(Collectors.joining("\n"));
+    }
+
+    private static String cleaned(String phone){
         return phone.replaceAll("\\s", "").replaceAll("[-()]","");
     }
 }

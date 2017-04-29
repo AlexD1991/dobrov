@@ -50,17 +50,19 @@
       <file leaf-file-name="ContactObject.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/by/auto/test/model/ContactObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="73" column="3" lean-forward="true" selection-start-line="73" selection-start-column="3" selection-end-line="73" selection-end-column="3" />
+            <state relative-caret-position="374">
+              <caret line="29" column="31" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
               <folding>
-                <element signature="e#692#693#0" expanded="true" />
-                <element signature="e#718#719#0" expanded="true" />
-                <element signature="e#1214#1215#0" expanded="true" />
-                <element signature="e#1237#1238#0" expanded="true" />
-                <element signature="e#1268#1269#0" expanded="true" />
-                <element signature="e#1291#1292#0" expanded="true" />
-                <element signature="e#3599#3600#0" expanded="true" />
-                <element signature="e#3627#3628#0" expanded="true" />
+                <element signature="e#682#683#0" expanded="true" />
+                <element signature="e#708#709#0" expanded="true" />
+                <element signature="e#892#893#0" expanded="true" />
+                <element signature="e#918#919#0" expanded="true" />
+                <element signature="e#1414#1415#0" expanded="true" />
+                <element signature="e#1437#1438#0" expanded="true" />
+                <element signature="e#1468#1469#0" expanded="true" />
+                <element signature="e#1491#1492#0" expanded="true" />
+                <element signature="e#3799#3800#0" expanded="true" />
+                <element signature="e#3827#3828#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -81,11 +83,11 @@
       <file leaf-file-name="ContactHelper.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/by/auto/test/appmanager/ContactHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="200" column="60" lean-forward="true" selection-start-line="200" selection-start-column="60" selection-end-line="200" selection-end-column="60" />
+            <state relative-caret-position="159">
+              <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
               <folding>
-                <element signature="e#5939#5940#0" expanded="true" />
-                <element signature="e#6001#6002#0" expanded="true" />
+                <element signature="e#6147#6148#0" expanded="true" />
+                <element signature="e#6209#6210#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -106,12 +108,12 @@
       <file leaf-file-name="ContactComparePhonesAddressesEmailsWithEditForm.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/by/auto/test/tests/ContactComparePhonesAddressesEmailsWithEditForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state relative-caret-position="104">
+              <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1283#1284#0" expanded="true" />
-                <element signature="e#1356#1357#0" expanded="true" />
+                <element signature="e#1757#1758#0" expanded="true" />
+                <element signature="e#1830#1831#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -470,9 +472,9 @@
         <option value="$PROJECT_DIR$/src/test/java/by/auto/test/tests/ContactCreation.java" />
         <option value="$PROJECT_DIR$/src/test/java/by/auto/test/tests/ContactModification.java" />
         <option value="$PROJECT_DIR$/src/test/java/by/auto/test/tests/ContactDeletion.java" />
-        <option value="$PROJECT_DIR$/src/test/java/by/auto/test/appmanager/ContactHelper.java" />
         <option value="$PROJECT_DIR$/src/test/java/by/auto/test/model/ContactObject.java" />
         <option value="$PROJECT_DIR$/src/test/java/by/auto/test/tests/ContactComparePhonesAddressesEmailsWithEditForm.java" />
+        <option value="$PROJECT_DIR$/src/test/java/by/auto/test/appmanager/ContactHelper.java" />
       </list>
     </option>
   </component>
@@ -1020,12 +1022,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ContactComparePhonesAddressesEmailsWithEditForm_contactComparePhonesAddressesEmailsWithEditForm - 2017.04.29 at 19h 23m 37s.xml">
-      <configuration name="ContactComparePhonesAddressesEmailsWithEditForm.contactComparePhonesAddressesEmailsWithEditForm" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="ContactComparePhonesAddressesEmailsWithEditForm_contactComparePhonesAddressesEmailsWithEditForm - 2017.04.29 at 19h 55m 13s.xml">
-      <configuration name="ContactComparePhonesAddressesEmailsWithEditForm.contactComparePhonesAddressesEmailsWithEditForm" configurationId="TestNG" />
-    </history-entry>
     <history-entry file="ContactComparePhonesAddressesEmailsWithEditForm_contactComparePhonesAddressesEmailsWithEditForm - 2017.04.29 at 19h 56m 57s.xml">
       <configuration name="ContactComparePhonesAddressesEmailsWithEditForm.contactComparePhonesAddressesEmailsWithEditForm" configurationId="TestNG" />
     </history-entry>
@@ -1044,11 +1040,17 @@
     <history-entry file="ContactComparePhonesAddressesEmailsWithEditForm_contactComparePhonesAddressesEmailsWithEditForm - 2017.04.29 at 20h 13m 15s.xml">
       <configuration name="ContactComparePhonesAddressesEmailsWithEditForm.contactComparePhonesAddressesEmailsWithEditForm" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="ContactDeletion_testContactDeletion - 2017.04.29 at 18h 00m 51s.xml">
-      <configuration name="ContactDeletion.testContactDeletion" configurationId="TestNG" />
+    <history-entry file="ContactComparePhonesAddressesEmailsWithEditForm_contactComparePhonesAddressesEmailsWithEditForm - 2017.04.29 at 20h 18m 27s.xml">
+      <configuration name="ContactComparePhonesAddressesEmailsWithEditForm.contactComparePhonesAddressesEmailsWithEditForm" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="by_auto_test_tests - 2017.04.29 at 18h 01m 26s.xml">
-      <configuration name="by.auto.test.tests" configurationId="TestNG" />
+    <history-entry file="ContactComparePhonesAddressesEmailsWithEditForm_contactComparePhonesAddressesEmailsWithEditForm - 2017.04.29 at 20h 19m 18s.xml">
+      <configuration name="ContactComparePhonesAddressesEmailsWithEditForm.contactComparePhonesAddressesEmailsWithEditForm" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="ContactComparePhonesAddressesEmailsWithEditForm_contactComparePhonesAddressesEmailsWithEditForm - 2017.04.29 at 20h 21m 05s.xml">
+      <configuration name="ContactComparePhonesAddressesEmailsWithEditForm.contactComparePhonesAddressesEmailsWithEditForm" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="ContactComparePhonesAddressesEmailsWithEditForm_contactComparePhonesAddressesEmailsWithEditForm - 2017.04.29 at 20h 21m 53s.xml">
+      <configuration name="ContactComparePhonesAddressesEmailsWithEditForm.contactComparePhonesAddressesEmailsWithEditForm" configurationId="TestNG" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -1117,25 +1119,25 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/by/auto/test/tests/ContactComparePhonesAddressesEmailsWithEditForm.java</url>
-          <line>28</line>
+          <line>31</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/by/auto/test/appmanager/ContactHelper.java</url>
-          <line>194</line>
+          <line>196</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/by/auto/test/appmanager/ContactHelper.java</url>
-          <line>195</line>
+          <line>197</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/by/auto/test/appmanager/ContactHelper.java</url>
-          <line>196</line>
+          <line>198</line>
           <properties />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
@@ -1246,16 +1248,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/by/auto/test/tests/ContactCreation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/util/function/Function.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
@@ -1282,17 +1274,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/by/auto/test/appmanager/ContactHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="200" column="60" lean-forward="true" selection-start-line="200" selection-start-column="60" selection-end-line="200" selection-end-column="60" />
-          <folding>
-            <element signature="e#5939#5940#0" expanded="true" />
-            <element signature="e#6001#6002#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/by/auto/test/model/Contacts.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -1309,31 +1290,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/by/auto/test/tests/ContactCreation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/by/auto/test/model/ContactObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="73" column="3" lean-forward="true" selection-start-line="73" selection-start-column="3" selection-end-line="73" selection-end-column="3" />
+        <state relative-caret-position="374">
+          <caret line="29" column="31" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
           <folding>
-            <element signature="e#692#693#0" expanded="true" />
-            <element signature="e#718#719#0" expanded="true" />
-            <element signature="e#1214#1215#0" expanded="true" />
-            <element signature="e#1237#1238#0" expanded="true" />
-            <element signature="e#1268#1269#0" expanded="true" />
-            <element signature="e#1291#1292#0" expanded="true" />
-            <element signature="e#3599#3600#0" expanded="true" />
-            <element signature="e#3627#3628#0" expanded="true" />
+            <element signature="e#682#683#0" expanded="true" />
+            <element signature="e#708#709#0" expanded="true" />
+            <element signature="e#892#893#0" expanded="true" />
+            <element signature="e#918#919#0" expanded="true" />
+            <element signature="e#1414#1415#0" expanded="true" />
+            <element signature="e#1437#1438#0" expanded="true" />
+            <element signature="e#1468#1469#0" expanded="true" />
+            <element signature="e#1491#1492#0" expanded="true" />
+            <element signature="e#3799#3800#0" expanded="true" />
+            <element signature="e#3827#3828#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/by/auto/test/appmanager/ContactHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+          <folding>
+            <element signature="e#6147#6148#0" expanded="true" />
+            <element signature="e#6209#6210#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/by/auto/test/tests/ContactComparePhonesAddressesEmailsWithEditForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state relative-caret-position="104">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1283#1284#0" expanded="true" />
-            <element signature="e#1356#1357#0" expanded="true" />
+            <element signature="e#1757#1758#0" expanded="true" />
+            <element signature="e#1830#1831#0" expanded="true" />
           </folding>
         </state>
       </provider>

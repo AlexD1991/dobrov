@@ -20,6 +20,17 @@ public class ContactObject {
   private String email2;
   private String email3;
   private String allPhones;
+  private String allEmails;
+
+  public String getAllEmails() {
+    return allEmails;
+  }
+
+  public ContactObject withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
+
   private int id = Integer.MAX_VALUE;
 
   public String getAllPhones() {
